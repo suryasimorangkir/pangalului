@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <!-- Bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link th:href="@{/../css/custom.css}" href="../../static/css/custom.css" rel="stylesheet">
+    <meta charset="UTF-8" http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title th:text="${applicationName}"></title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/../img/logo-icon.ico}" />
+
+</head>
+<body>
+<section class="outer-wrapper">
+    <div class="inner-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <a href="/">
+                    <img class="img-center" th:src="@{/../img/logo.png}" alt="logo" />
+                    </a>
+                    <form role="form" action="#" th:action="@{/search}">
+                        <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" class="search-query form-control input-lg" placeholder="Search" name="q" id="q"/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="submit">
+                                        <span class="glyphicon glyphicon-search glyphicon-lg"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<script th:src="@{/../js/bootstrap.js}" src = "/js/bootstrap.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link th:href="@{/../css/custom.css}" href="../../static/css/custom.css" rel="stylesheet">
+    <meta charset="UTF-8" http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title th:inline="text">[[${query}]] - [[${titleSearch}]]</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/../img/logo-icon.ico}" />
+
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="/">
+            <img th:src="@{/../img/logo-2.png}" alt="">
+        </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="col-sm-7 col-md-7">
+            <form class="navbar-form" role="search" action="#" th:action="@{/search}">
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="search-query form-control input-lg" th:value="${query}" placeholder="Search" name="q" id="q"/>
+                        <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="submit">
+                                        <span class="glyphicon glyphicon-search glyphicon-lg"></span>
+                                    </button>
+                                </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!-- /.navbar-collapse -->
+</nav>
+
+<div class="container">
+
+    <hgroup class="mb20">
+        <div th:if="${docFiles.isEmpty()}">
+            <h2 class="lead" th:inline="text">Your search <strong class="text-danger">[[${query}]]</strong> - did not match any documents.</h2>
+        </div>
+        <div th:if="${docFiles.size() > 0}">
+            <h1>Search Results</h1>
+            <h2 class="lead" th:inline="text"><strong class="text-danger">[[${docFiles.size()}]]</strong> results were found for the search for <strong class="text-danger">[[${query}]]</strong>. Total time [[${timeConsumed}]] ms</h2>
+        </div>
+    </hgroup>
+
+    <section class="col-xs-12 col-sm-6 col-md-12">
+        <div th:if="${docFiles}">
+            <article class="search-result row" th:each="doc : ${docFiles}" >
+                <div class="col-xs-12 col-sm-12 col-md-12 excerpet">
+                    <h3><a th:href="${'search/download/'}+${doc.getPath()}"  th:text="${doc.getTitle()}"></a></h3>
+                    <p th:inline="text">Path File : [[${doc.getPath()}]]</p>
+                    <p th:inline="text">Score : [[${doc.getScore()}]]</p>
+                    <!--<p>Result of Calculation : </p>-->
+                    <!--<p th:inline="text">[[${doc.getExplanation()}]]</p>-->
+
+
+                </div>
+                <span class="clearfix borda"></span>
+            </article>
+        </div>
+
+
+
+
+    </section>
+</div>
+
+</body>
+
+
+<script th:src="@{/../js/bootstrap.js}" src = "/js/bootstrap.js"></script>
+
+</html>
